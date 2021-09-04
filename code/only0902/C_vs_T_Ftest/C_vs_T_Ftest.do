@@ -11,16 +11,16 @@
 clear all
 set more off
 cd "C:\Users\User\Desktop\poll\data\processed_data"
-log using "..\..\code\C_vs_T_Ftest", replace //開啟日誌
+log using "..\..\code\C_vs_T_Ftest_log", replace //開啟日誌
 
 /*merge_int*/
 import delimited "merge_int.csv", clear
 
 qui reg wtp treatment sb bs bb sb_treatment bs_treatment bb_treatment, r
 
-test treatment sb_treatment
-test treatment bs_treatment
-test treatment bb_treatment
+test treatment + sb_treatment = 0
+test treatment + bs_treatment = 0
+test treatment + bb_treatment = 0
 
 
 /*merge_max*/
@@ -28,18 +28,18 @@ import delimited "merge_max.csv", clear
 
 qui reg wtp treatment sb bs bb sb_treatment bs_treatment bb_treatment, r
 
-test treatment sb_treatment
-test treatment bs_treatment
-test treatment bb_treatment
+test treatment + sb_treatment = 0
+test treatment + bs_treatment = 0
+test treatment + bb_treatment = 0
 
 /*merge_min*/
 import delimited "merge_min.csv", clear
 
 qui reg wtp treatment sb bs bb sb_treatment bs_treatment bb_treatment, r
 
-test treatment sb_treatment
-test treatment bs_treatment
-test treatment bb_treatment
+test treatment + sb_treatment = 0
+test treatment + bs_treatment = 0
+test treatment + bb_treatment = 0
 
 
 log close
